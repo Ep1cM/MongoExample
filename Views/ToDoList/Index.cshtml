@@ -1,0 +1,52 @@
+﻿@model List<ToDoMongoDB.Model.Models.ToDoList>
+@{
+    this.Layout = "_Layout";
+}
+
+<link rel="stylesheet" href="~/css/card.css">
+
+<div class="container">
+    <div class="row">
+        @foreach (var list in Model)
+        {
+            <div class="col-lg-4">
+                <div class="card card-margin">
+                    <div class="card-header no-border">
+                        <h5 class="card-title">@list.Name</h5>
+                    </div>
+                    <div class="card-body pt-0">
+                        <div class="widget-49">
+                            <div class="widget-49-title-wrapper">
+                                <div class="widget-49-date-primary">
+                                    <span class="widget-49-date-day">@list.Datecreate.ToString("dddd")</span>
+                                    <span class="widget-49-date-month">@list.Datecreate.ToString("MMMM")</span>
+                                </div>
+                                <div class="widget-49-meeting-info">
+                                    <span class="widget-49-pro-title">@list.Description</span>
+                                    <span class="widget-49-meeting-time">12:00 to 13.30 Hrs</span>
+                                </div>
+                            </div>
+                            <ol class="widget-49-meeting-points">
+                                @foreach (var task in list.Tasks)
+                                {
+                                    <li class="widget-49-meeting-item"><span>@task.Title</span></li>
+                                }
+                            </ol>
+                            <div class="widget-49-meeting-action">
+                                <a href="@Url.Action("Details", "ToDoList", new { id = list.Id })" class="btn btn-sm btn-flash-border-primary">Open Info</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        <div class="col-lg-4">
+            <div class="card card-margin">
+                <div class="card-body">
+                    <h5 class="card-title">Добавить запись</h5>
+                    <a href="@Url.Action("CreateView", "ToDoList")" class="btn btn-primary btn-block">+</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

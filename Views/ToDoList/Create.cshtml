@@ -1,0 +1,24 @@
+﻿@model ToDoMongoDB.Model.Models.ToDoList
+@{
+    this.Layout = "_Layout";
+}
+
+<link rel="stylesheet" href="~/css/card.css">
+
+<h2>Создание новой записи</h2>
+
+<form method="post" action="@Url.Action("Create", "ToDoList")">
+    <div class="form-group">
+        <label for="name">Название:</label>
+        <input type="text" class="form-control" id="name" name="Name" required>
+    </div>
+    <div class="form-group">
+        <label for="description">Описание:</label>
+        <textarea class="form-control" id="description" name="Description" required></textarea>
+    </div>
+    <div class="form-group">
+        <label for="datecreate">Дата создания:</label>
+        <input type="date" class="form-control" id="datecreate" name="Datecreate" value="@DateTime.Now.ToString("yyyy-MM-dd")" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+</form>
