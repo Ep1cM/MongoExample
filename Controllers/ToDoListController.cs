@@ -26,7 +26,8 @@ namespace ToDoMongoDB.Controllers
         [HttpGet]
         public IActionResult Today()
         {
-            return null;
+            var lists = _toDoListRepo.GetAsync().Result;
+            return View(lists);
         }
 
         [HttpGet]
